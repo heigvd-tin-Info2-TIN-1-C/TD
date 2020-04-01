@@ -34,18 +34,20 @@ uint32_t wc(char *s)
     return count;
 }
 
-
-void ws(char* s) {
+void ws(char *s)
+{
 
     bool inWord = false;
     uint32_t wordIndex = 0;
     uint32_t index = 0;
     uint32_t numWords = 0;
+    uint32_t k = 0;
     char **word = NULL;
     char *start = NULL;
     char *stop = NULL;
     char *p = NULL;
     uint32_t length = 0;
+    bool wordAlreadyExist = false;
 
     // 1. get number of word in s
     numWords = wc(s);
@@ -60,9 +62,9 @@ void ws(char* s) {
     // ...
     // word[numWords-1] <- "suscipit"
 
-    word = (char**) malloc(numWords * sizeof(char *));
+    puts("*** Words in the dictionnary ***");
+    word = (char **)malloc(numWords * sizeof(char *));
 
-    puts("****\n\n");
     while (s[index])
     {
 
@@ -73,42 +75,65 @@ void ws(char* s) {
         }
         else if (inWord && (s[index] == ' ' || s[index] == ',' || s[index] == '.' || s[index] == '\0'))
         {
-            stop = s + index-1;
+            stop = s + index - 1;
             inWord = false;
 
             // display the chars from start to stop
+#if 0
             putchar('[');
             for (p = start; p <= stop; p++)
             {
                 putchar(*p);
             }
             putchar(']');
-
+            puts("");
+#endif
             // word length ("titi" => length=4)
             length = stop - start + 1;
-            // allocate memory for the word in the table
-            word[wordIndex]=(char *) calloc(length+1, sizeof(char)); // +1 for the '\0' to the end
-            // copy from string to word table (no need to add a \0', the calloc set the table to zero :)
-            memcpy(word[wordIndex], start, length);
 
-            // check the content of the table
-            printf(" -> [%s]\n", word[wordIndex]);
+            // detect if the new word already exits in word[]
+            // must update : wordAlreadyExist
 
-            wordIndex++;
+            // for loop on word[k] : [0..wordIndex[
+            //  test if word[k]==new word => wordAlreadyExist=true
+
+            wordAlreadyExist = false;
+
+            *(stop + 1) = '\0'; // convert to a string
+
+            for (k = 0; k < wordIndex; k++)
+            {
+                if (0 == strcmp(word[k], start))
+                {
+                    wordAlreadyExist = true;
+                }
+            }
+            *(stop + 1) = ' '; // restore the char table
+
+            // if not, add word to the table
+            if (wordAlreadyExist == false)
+            {
+                // allocate memory for the word in the table
+                word[wordIndex] = (char *)calloc(length + 1, sizeof(char)); // +1 for the '\0' to the end
+                // copy from string to word table (no need to add a \0', the calloc set the table to zero :)
+                memcpy(word[wordIndex], start, length);
+
+                // check the content of the table
+                printf("%s\n", word[wordIndex]);
+
+                wordIndex++;
+            }
         }
         index++;
     }
-
-    
+    printf("%u different word(s).\n", wordIndex);
     return;
 }
-
-
 
 int main(int argc, char *argv[])
 {
     eErrorCode returnCode = E_NO_ERROR;
-    const char *filename = "text.txt"; //argv[1];
+    const char *filename = "text2.txt"; //argv[1];
     FILE *f = NULL;
     uint32_t fileSize = 0;
     char *text = NULL;
