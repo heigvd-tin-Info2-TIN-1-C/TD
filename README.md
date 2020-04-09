@@ -15,3 +15,4 @@ Il est mis à jour à la fin de chaque cours.
 | TD20200312 | dynamic memory allocation |
 | TD20200324 | Text processing and  dynamic memory allocation (update 20200331) |  
 | TD20200407 | Preprocessor |  
+| TD20200409 | Preprocessor, Recursivity |  
