@@ -18,3 +18,4 @@ Il est mis à jour à la fin de chaque cours.
 | TD20200409 | Preprocessor, Recursivity |  
 | TD20200421 | unions, structures, enum |  
 | TD20200428 | Getopt_long |  
+| TD20200505 | Separate compilation |  
