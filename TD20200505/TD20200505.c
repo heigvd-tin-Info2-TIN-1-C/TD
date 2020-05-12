@@ -26,5 +26,7 @@ int main(int argc, char const *argv[])
   pointDisplay("P1", p1);
   pointDisplay("P2", p2);
 
+  gT = 3;
+  
   return 0;
 }

@@ -29,8 +29,11 @@ typedef struct {
 // functions prototypes
 sPoint rotate(const sPoint p1, const double angle);
 void pointDisplay(const char *name, const sPoint p);
-void test(void);
+static void test(void);
+
 
 // externals
+extern int32_t gT;
+
 
 // end of errorManager.h

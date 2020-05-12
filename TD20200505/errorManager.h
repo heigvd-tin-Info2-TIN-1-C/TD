@@ -27,7 +27,7 @@ typedef enum
 
 // functions prototypes
 void displayError(eError e);
-void test(void);
+static void test(void);
 
 // externals
 
