@@ -10,6 +10,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+
+#include "listType.h"
 
 // preprocessor symbols
 #define MAX_LIST_SIZE (100)
@@ -19,8 +22,6 @@
 // enumerated types
 
 // structured types
-typedef double elem; // create the 'elem' type, based on the 'double' type
-
 typedef struct {
     uint32_t numElements;
     elem element[MAX_LIST_SIZE];
@@ -34,8 +35,27 @@ uint32_t getNumElem(sList *l);
 bool isListFull(sList *l);
 bool isListEmpty(sList *l);
 void insertElem(sList *l, elem e, int32_t pos);
-
 void displayList(sList *l);
+
 // externals
 
-// end of errorManager.h
+// end of list.h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int32_t searchElem(sList *l, elem e);
