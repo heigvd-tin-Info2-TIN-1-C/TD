@@ -1,6 +1,6 @@
 /**
-  \file      TD20200514.c
-  \brief     table list
+  \file      TD20200526.c
+  \brief     table list (dynamic)
   \author    Pierre BRESSY
   \version   1.0
   \date      2020-04-21 13:41:24
@@ -8,7 +8,7 @@
     
 **/
 
-#include "TD20200514.h"
+#include "TD20200526.h"
 
 int main(int argc, char const *argv[])
 {
@@ -39,23 +39,28 @@ int main(int argc, char const *argv[])
 #endif
 
 #ifdef ELEM_POINT2D
-  elem p1 = {1, 2};
-  elem p2 = {10, 20};
-  elem p3 = {31, 32};
-  int32_t pos = -1;
 
-  insertElem(&l, p1, -1);
+  insertElem(&l, (elem){.row=10, .col=11}, -1);
   displayList(&l);
-  insertElem(&l, p2, -1);
+  insertElem(&l, (elem){.row=10, .col=12}, -1);
   displayList(&l);
-  insertElem(&l, p3, -1);
+  insertElem(&l, (elem){.row=10, .col=13}, -1);
   displayList(&l);
-
-  // search for p2 in l
-  pos = searchElem(&l, p2);
-  printf("pos=%d\n", pos);
-
-  removeElem(&l,pos);
+  insertElem(&l, (elem){.row=10, .col=414}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=15}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=16}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=17}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=18}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=19}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=20}, -1);
+  displayList(&l);
+  insertElem(&l, (elem){.row=10, .col=21}, -1);
   displayList(&l);
 
 

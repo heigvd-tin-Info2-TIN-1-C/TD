@@ -9,22 +9,26 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 
 #include "listType.h"
 
 // preprocessor symbols
-#define MAX_LIST_SIZE (100)
+#define DEFAULT_LIST_SIZE (10)
+#define EXTENSION_LIST_SIZE (5)
 
 // preprocessor macros
 
 // enumerated types
 
 // structured types
-typedef struct {
+typedef struct
+{
+    uint32_t capacity;
     uint32_t numElements;
-    elem element[MAX_LIST_SIZE];
+    elem *element;
 } sList;
 
 // unions types
@@ -42,21 +46,3 @@ uint32_t removeElem(sList *l, uint32_t pos);
 // externals
 
 // end of list.h
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

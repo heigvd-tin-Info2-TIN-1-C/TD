@@ -14,6 +14,11 @@ void initList(sList *l)
 {
 
     l->numElements = 0;
+    l->capacity = 0;
+    l->element = (elem *)calloc(DEFAULT_LIST_SIZE, sizeof(elem));
+    if(l->element) {
+        l->capacity = DEFAULT_LIST_SIZE;
+    }
     return;
 }
 
@@ -26,7 +31,7 @@ uint32_t getNumElem(sList *l)
 bool isListFull(sList *l)
 {
 
-    return (l->numElements == MAX_LIST_SIZE);
+    return (l->numElements == l->capacity);
 }
 
 bool isListEmpty(sList *l)
@@ -39,7 +44,16 @@ void insertElem(sList *l, elem e, int32_t pos)
 {
 
     int32_t k = 0;
-
+ /*    elem *newArea = NULL;
+   if (isListFull(l))
+    {
+        newArea = (elem *)realloc(l->element, (l->capacity + EXTENSION_LIST_SIZE) * sizeof(elem));
+        if(newArea) {
+            l->element = newArea;
+            l->capacity += EXTENSION_LIST_SIZE;
+        }
+    }
+    */
     if (!isListFull(l))
     {
         if (pos == -1)
@@ -118,7 +132,6 @@ int32_t searchElem(sList *l, elem e)
 
 uint32_t removeElem(sList *l, uint32_t pos) {
 
-    uint32_t k = 0;
     
     if (pos < l->numElements)
     {
