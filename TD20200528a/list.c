@@ -16,17 +16,20 @@ void initList(sList *l)
     l->numElements = 0;
     l->capacity = 0;
     l->element = (elem *)calloc(DEFAULT_LIST_SIZE, sizeof(elem));
-    if(l->element) {
+    if (l->element)
+    {
         l->capacity = DEFAULT_LIST_SIZE;
     }
     return;
 }
 
-void terminateList(sList *l) {
+void terminateList(sList *l)
+{
 
     l->numElements = 0;
     l->capacity = 0;
-    if(l->element) {
+    if (l->element)
+    {
         free(l->element);
         l->element = NULL;
     }
@@ -60,13 +63,14 @@ void insertElem(sList *l, elem e, int32_t pos)
     if (isListFull(l))
     {
         newArea = (elem *)realloc(l->element, (l->capacity + EXTENSION_LIST_SIZE) * sizeof(elem));
-        if(newArea) {
+        if (newArea)
+        {
             l->element = newArea;
             l->capacity += EXTENSION_LIST_SIZE;
             printf("new capacity=%u\n", l->capacity);
         }
     }
-    
+
     if (!isListFull(l))
     {
         if (pos == -1)
@@ -128,9 +132,10 @@ int32_t searchElem(sList *l, elem e)
     bool found = false;
     uint32_t k = 0;
 
-    while( k<l->numElements && !found) {
+    while (k < l->numElements && !found)
+    {
 
-        if(0==memcmp(&e, &(l->element[k]), sizeof(elem) ))
+        if (0 == memcmp(&e, &(l->element[k]), sizeof(elem)))
         {
             found = true;
             pos = k;
@@ -142,20 +147,45 @@ int32_t searchElem(sList *l, elem e)
     return pos;
 }
 
+uint32_t removeElem(sList *l, uint32_t pos)
+{
 
-uint32_t removeElem(sList *l, uint32_t pos) {
-
-    
     if (pos < l->numElements)
     {
 #if 1
         memmove(&(l->element[pos]), &(l->element[pos + 1]), (l->numElements - pos - 1) * sizeof(elem));
 #else
-        for (k = pos + 1; k < l->numElements;k++) {
+        for (k = pos + 1; k < l->numElements; k++)
+        {
             l->element[k - 1] = l->element[k];
         }
 #endif
         l->numElements--;
     }
     return l->numElements;
+}
+
+elem getElem(sList *l, int32_t pos)
+{
+    elem e = {0, 0};
+    if (isListEmpty(l))
+    {
+        printf("[getElem] error, list is empty.");
+    }
+    // pos int32_t
+    // l->numElements uint32_t
+    // compare always values of same type
+    else if (pos >= (int32_t)(l->numElements) || pos < -1)
+    {
+        printf("[getElem] error, bad pos %d.",pos);
+    }
+    else
+    {
+        if (pos == -1)
+        {
+            pos = l->numElements - 1;
+        }
+        e = l->element[pos];
+    }
+    return e;
 }

@@ -39,11 +39,12 @@ uint32_t getNumElem(sList *l);
 bool isListFull(sList *l);
 bool isListEmpty(sList *l);
 void insertElem(sList *l, elem e, int32_t pos);
+void displayElem(elem e);
 void displayList(sList *l);
 int32_t searchElem(sList *l, elem e);
 uint32_t removeElem(sList *l, uint32_t pos);
 void terminateList(sList *l);
-
+elem getElem(sList *l, int32_t pos);
 // externals
 
 // end of list.h

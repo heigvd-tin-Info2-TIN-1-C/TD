@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
   insertElem(&l, (elem){.row=10, .col=21}, -1);
   displayList(&l);
 
-
+  terminateList(&l);
 #endif
 
   return 0;
