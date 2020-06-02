@@ -21,3 +21,5 @@ Il est mis à jour à la fin de chaque cours.
 | TD20200505 | Separate compilation |  
 | TD20200514 | List with fixed size table |  
 | TD20200526 | List with dynamic size table |  
+| TD20200602 | List with dynamic size table (Pile, File) |  
+| TD20200602b | Linked list |  
