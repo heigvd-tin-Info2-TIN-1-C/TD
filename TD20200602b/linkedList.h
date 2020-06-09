@@ -21,25 +21,30 @@
 
 // enumerated types
 
-// structured types 
-typedef struct elem {
+// structured types
+typedef struct elem
+{
   struct elem *prev;
   struct elem *next;
   payload p;
 } elem;
 
-typedef struct {
+typedef struct
+{
 
   struct elem *first;
   struct elem *last;
   uint32_t numElem;
-  
+
 } linkedList;
 // unions types
 
 // functions prototypes
 void initList(linkedList *l);
-elem *createElem(payload p); 
+elem *createElem(payload p);
+void displayList(linkedList *l);
+void displayElem(elem *e);
+void insertElem(linkedList *l, elem *e, int32_t pos);
 
 // externals
 
