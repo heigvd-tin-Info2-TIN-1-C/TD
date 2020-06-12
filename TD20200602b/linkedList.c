@@ -35,16 +35,14 @@ elem *createElem(payload p)
 
 void displayElem(elem *e)
 {
-  printf("(%3d,%3d)", e->p.row, e->p.col);
+  printf("(%3d,%3d) ", e->p.row, e->p.col);
   return;
 }
-
-
 
 void displayList(linkedList *l)
 {
   elem *e = l->first;
-  while (e !=NULL)
+  while (e != NULL)
   {
     displayElem(e);
     e = e->next;
@@ -55,6 +53,8 @@ void displayList(linkedList *l)
 
 void insertElem(linkedList *l, elem *e, int32_t pos)
 {
+  elem *prev = NULL;
+  elem *next = NULL;
   if (l->numElem == 0)
   {
     l->first = l->last = e;
@@ -75,12 +75,31 @@ void insertElem(linkedList *l, elem *e, int32_t pos)
       l->first = e;
       l->numElem++;
     }
-    else if(pos==-1) {
+    else if (pos == -1 || pos == l->numElem)
+    {
       e->next = NULL;
       e->prev = l->last;
       l->last->next = e;
       l->last = e;
       l->numElem++;
+    }
+    else if (pos > 0 && pos < l->numElem)
+    {
+      prev = l->first;
+      while (--pos)
+      {
+        prev = prev->next;
+      }
+      next = prev->next;
+      prev->next = e;
+      next->prev = e;
+      e->next = next;
+      e->prev = prev;
+      l->numElem++;
+    }
+    else
+    {
+      fprintf(stderr, "[insertElem] bad position for insertion (%d).\n", pos);
     }
   }
 
